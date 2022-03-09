@@ -7,7 +7,7 @@ broom = bwstripe(img_x, img_y);
 % subsampling in x-direction by decimating pixels (use only every nsample-th pixel)
 imagesc(broom(:, 1:nsample:img_x));
 
-% subsampling with (nsquare x nsquare) matrix averaging filter
+% subsampling with (nsample x nsample) matrix averaging filter
 pixavg = zeros(img_y / nsample, img_x / nsample);
 
 for j=1:img_y / nsample - 1
