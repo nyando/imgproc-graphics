@@ -9,20 +9,20 @@ broom = broom - mean(broom(:));
 broom_dec = broom_dec - mean(broom_dec(:));
 broom_avg = broom_avg - mean(broom_avg(:));
 
-res = fft(broom, [], 2);
-res_dec = fft(broom_dec, [], 2);
-res_avg = fft(broom_avg, [], 2);
+res = fftshift(sqrt(abs(fft(broom, [], 2))), 2);
+res_dec = fftshift(sqrt(abs(fft(broom_dec, [], 2))), 2);
+res_avg = fftshift(sqrt(abs(fft(broom_avg, [], 2))), 2);
 
 % base fourier transformation
 colormap gray;
-imagesc(fftshift(sqrt(abs(res)), 2));
+imagesc(res);
 
 % fourier transformation of decimated image
 figure;
 colormap gray;
-imagesc(fftshift(sqrt(abs(res_dec)), 2));
+imagesc(res_dec);
 
 % fourier transformation of mean-filtered image
 figure;
 colormap gray;
-imagesc(fftshift(sqrt(abs(res_avg)), 2));
+imagesc(res_avg);
