@@ -1,5 +1,5 @@
-img_x = 3000;
-img_y = 3200;
+img_x = 300;
+img_y = 320;
 nsample = 5;
 
 broom = bwstripe(img_x, img_y);
