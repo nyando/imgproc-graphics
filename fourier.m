@@ -1,5 +1,5 @@
-img_x = 600;
-img_y = 640;
+img_x = 1200;
+img_y = 1280;
 
 broom = bwstripe(img_x, img_y);
 broom_dec = broom(:, 1:3:img_x);
@@ -24,8 +24,8 @@ res_dec = fftshift(sqrt(abs(fft(broom_dec, [], 2))), 2);
 
 % filtering in frequency space with a low-pass filter
 filter_mask = cat(2, zeros(img_y, floor(img_x / 3)), ones(img_y, floor(img_x / 3)), zeros(img_y, floor(img_x / 3)));
-filtered = ifft(fftshift(filter_mask, 2) .* fft(broom(:, 1:600), [], 2), [], 2);
-filtered_decimated = filtered(:, 1:3:600);
+filtered = ifft(fftshift(filter_mask, 2) .* fft(broom(:, 1:img_x), [], 2), [], 2);
+filtered_decimated = filtered(:, 1:3:img_x);
 colormap gray;
 imagesc(real(filtered));
 colorbar;
