@@ -1,3 +1,11 @@
+# Historisches
+
+- **Peter Hough** - späte 50er, Patentanmeldung des Verfahrens im Jahre 1962.
+- Ursprünglich zur maschinellen Analyse von Bildern aus Blasenkammern entwickelt.
+- Teilchen in einer Blasenkammer ziehen lineare Spuren hinter sich her.
+- Anhand eines Bildes bspw. Eintrittswinkel des Teilchens bestimmen.
+
+
 # Motivation
 
 - Erkennung von geometrischen Figuren in Bildern.
@@ -5,12 +13,6 @@
 - Anwendbar auf diverse geometrische Figuren, z. B. auch Kreise.
 - Bedingt eine Vorverarbeitung mit einem Kantenfilter (_Sobel_, _Canny_, o. Ä.).
 
-# Historisches
-
-- **Peter Hough** - späte 50er, Patentanmeldung des Verfahrens im Jahre 1962.
-- Ursprünglich zur maschinellen Analyse von Bildern aus Blasenkammern entwickelt.
-- Teilchen in einer Blasenkammer ziehen lineare Spuren hinter sich her.
-- Anhand eines Bildes bspw. Eintrittswinkel des Teilchens bestimmen.
 
 # Grundidee
 
@@ -32,6 +34,8 @@ $$
 - **Nachteil**: $m$ kann bei vertikalen Linien unendlich sein,
   folglich wäre auch der Parameterraum unbegrenzt.
 
+![Hough-Transformation einer Linie](imgs/GeradeTransf.pdf){ width=60% }
+
 # Parameter einer Linie: Zweiter Ansatz
 
 $$
@@ -42,6 +46,15 @@ $$
 - $\theta$ - Winkel der Normalen zur $x$-Achse 
 - Parametrierung auch bekannt als _Hesse'sche Normalform_ einer Geradengleichung
 - **Vorteil**: Kein unbegrenzter Parameterraum, $r$ ist beschränkt auf Bildgröße und $0 \leq \theta < 2\pi$
+
+![Darstellung der Parameter](imgs/Hesseche.pdf){ width=40% }
+
+# Kreis Detektion
+
+- Leichte Abwandlung des Verfahrens notwendig
+- Akkumulator wird inkrementiert, bei Möglichkeit als Kreismittelpunkt
+- Hoher Akkumulatorwert = Höhere Wahrscheinlichkeit für den Kreismittelpunkt
+- Anwendbar auch auf Elipsen
 
 # Der Generalized Hough Transform (GHT)
 

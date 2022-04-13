@@ -1,0 +1,59 @@
+Willkommen zu unseren Vortrag.
+
+Wir werden euch heute das Thema Hough Transformationen vorstellen.
+Dafür werde ich euch zunächst ein bisschen darstellen wo die Hough Transformation ihren Ursprung hat und in welchen Bezug sie eigentlich zu der Vorlesungen Digitale Bilderverarbeitung steht.
+Danach gehe ich auf Anwendung der Hough Transformation ein. Dabei werde ich euch dies expliziet an den Beispielen Geraden, Kreisen und Elipsen darstellen.
+Im Anschluss wird Nicolas dann auf die Generalized Hough Transformation für komplexere Strukturen eingehen und abschließend euch anhand einer Demo die Anwendung der Hough Transformation demonstrieren.
+
+Beginnen wir zunächst mit dem Ursprung der Hough Transformation.
+Entwickelt wurde Sie von Peter Hough in den späten 50er Jahren.
+Der Ursprünglich Gedanke war dabei Bilder einer Blasenkammer, mit Hilfe einer machinellen Analyse zu verarbeiten.
+Dafür sollte die Hough Transformation die lineare Spure, welche die Teilchen in der Blasenkammer erzeugten erkennen und zum Beispiel deren Eintrittswinkel anhand eines Bildes bestimmen.
+
+Damit befinden wir uns auch schon im Rahmen der digitalen Bilderverarbeitung und haben einen direkten Bezug zu den in der Vorlesung vorgestellten Inhalten.
+Die Hough Transformation beschäftigt sich in Ihrem Ursprung mit der detektion von Linieren.
+Kann aber zusätzlich auch zur Erkennung weiterer Geometische Figuren wie z.B. Kreisen verwendet werden.
+Ein weiterer Bezug zur Vorlesung ist die Vorbedingung für die Verwendung der Hough Transformation.
+So müssen zunächst über einen Kantenfilter die Kanten in dem Bild hervorgestellt werden.
+Hiefür kann zum Beispiel der in Vorlesung vorgestelle Sobel oder Canny-Filter verwendet werden.
+Eine weitere Vorbedingung ist die Verwendung eines Schwarz-Weiß-Bildes.
+
+Wie bereits am Anfang dargellt ist die Grundidee der Hough Transformation die Erkennung Geometrischer Figuren.
+Dabei werden die Figuren anhand ihrer spezifischen Parameter beschrieben.
+Diese sind bei der Geraden der Punkt und der Winkel.
+Beim Kreis hingegen handelt es sich und den Mittelpunkt und den Radius.
+Bei der Anwendung der Hough Transformation findet dann zunächst eine sogennante Transformation in Hough bzw. Dual Raum statt.
+Dabei wird unter anderem das Voting-Verfahren verwendet.
+Das Voting-Verfahren beschreibt das je mehr Punkte einen Punkt im Tranformierten Bereich durchlaufen, desto wahrscheinlich ist es das eine Linie zu dem entsprechenden Punkt existiert.
+
+Beginnen wir mit dem einsetzen einer der Parameter in die folgenden Linienfunktion. y = mx + b.
+In die Formel werden dabei für die Parater m die Steigung und für den Parameter b der Y-Achsenabschnitt verwendet.
+Nun werden die einzelnen Punkte in den Hough-Raum mit Hilfe der Formel transformiert.
+Wenn die transformierten Punkte eine Linie bilden, kreuzen sich die Punkte wie im Beispiel dargestellt.
+Der Punkte beschreibt dann die gefundene Linie. 
+Bei der Verwendung dieser Formel kann allerdings ein entscheidender Nachteil auftauchen und zwar für den Fall das die Linie parallel zur Y-Linie bzw. vertikal verläuft.
+In diesem spezifischen Fall ist die Steigung m unendlich und daraus folgt ein unendlicher Paramterraum.
+Generell nimmt die Größe des Paramterraums exponential zu je näher die Linie sich dem vertikalen Verlauf annähert.
+
+Um den Paramterraum zu begrenzen muss eine andere Formel zur Beschreibung der Linien verwendet werden.
+Eine Möglichkeit ist hiefür die Verwendung der Hessechen Normalform.
+Dabei beschreiben die Parameter r die Länge der Normalen der Linie zum Ursprung und theta den Winkel der Normalen zur X-Achse.
+Die Normale ist in der Abbildung in Rot eigezeichnet.
+Sie wird definiert durch die Herkunft aus dem Ursprung und dem rechten Winkel zur eigentlichen Linie.
+Der Vorteil ist hierbei die eindeutige Begrenzung des Parameterraums auf den Wertebereich zwischen null und zwei Pii.
+
+Neben der Detektion von Linien können wie zuvor beschrieben auch Kreise detektiert werden.
+Hierfür ist eine leichte Abwandlung des Verfahrens notwendig.
+Jedes Kantenpixel im vorverarbeiteten Bild wird dabei als Radius eines Kreises angesehen.
+Wichtig zu wissen ist das für jeden Pixel im Vorweg ein sogennanter Akkumulator definiert wird.
+Dieser wird dabei sobald er ein möglicher Kreismittelpunkt ist inkrementiert.
+Je höher der Wert am Ende in diesem Akkumulator ist desto größer ist die Wahrscheinlichkeit das es sich um einen entsprechenden Kreis handelt.
+Das gleiche Verfahren kann auch zur Detektion von Elipsen verwendet werden. 
+
+
+Quellen:
+http://www.gm.fh-koeln.de/~hk/lehre/ala/ws0506/Praktikum/Projekt/E_rot/Dokumentation.pdf
+https://de.wikipedia.org/wiki/Hough-Transformation
+https://www.youtube.com/watch?v=8fyWszvPCQE
+https://www.youtube.com/watch?v=9JWnuHabX0c
+https://de-academic.com/dic.nsf/dewiki/629506
